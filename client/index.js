@@ -50,7 +50,7 @@ class Sprite {
 }
 
 const firstKit = new Sprite ({
-    "src": '../audio/firstKit.webm',
+    "src": './audio/firstKit.webm',
     "sprite": {
         "1": [ //hi-hat
           0,
