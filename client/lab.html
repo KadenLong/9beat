@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lab.css">
+    <title>Drumkit</title>
+</head>
+<body>
+    <div class="container">
+        <nav >
+
+        </nav>
+            <div class="keys">
+                <select name="sounds" id="sounds">
+                    <option value="eighties">80's</option>
+                    <option value="vinyl">Vinyl</option>
+                    <option value="electro">Electro</option>
+                  </select>
+                <div class="visual">
+                    
+                    <div class="set">
+                        <div data-num="7" class="key" id="7">7</div>
+                        <div data-num="8" class="key" id="8">8</div>
+                        <div data-num="9" class="key" id="9">9</div>
+                    </div>
+                    <div class="set">
+                        <div data-num="4" class="key" id="4">4</div>
+                        <div data-num="5" class="key" id="5">5</div>
+                        <div data-num="6" class="key" id="6">6</div>
+                    </div>
+                    <div class="set">
+                        <div data-num="1" class="key" id="1">1</div>
+                        <div data-num="2" class="key" id="2">2</div>
+                        <div data-num="3" class="key" id="3">3</div>
+                    </div>
+                </div>
+            </div>
+            <div class="recordings">
+                <div class="recorder">
+                    
+                    <button class="record"></button>
+                    <button class="play btn">play</button>
+                    <button class="save btn">save</button>
+                    <button class="delete">X</button>
+                </div>
+            </div>
+    </div>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="lab.js"></script>
+</body>
+</html>

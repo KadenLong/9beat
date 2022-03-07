@@ -45,9 +45,18 @@ module.exports ={
                 INSERT INTO beats (beat_name, beat_kit, beat_notes, user_id)
                 VALUES ('first_beat', 'first_kit', '${json}', 1);
             `)
-            .then(dbRes => res.status(200).send(dbRes[0]))
+            .then(dbRes => res.sendStatus(200))
             .catch(err => console.log(err))
         // console.log(req.body)
+    },
+    getUserInfo: (req, res) => {
+        sequelize
+            .query(`
+                SELECT *
+                FROM users
+            `)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))
     },
     getSongs: (req, res) => {
         sequelize
@@ -55,6 +64,18 @@ module.exports ={
                 SELECT *
                 FROM beats
                 WHERE user_id = ${req.params.id}
+            `)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))
+    },
+    login: (req, res) => {
+        console.log('Logging in user')
+        console.log(req.body)
+        sequelize
+            .query(`
+                SELECT * 
+                FROM users
+                WHERE username = '${req.body.user}' AND password = '${req.body.password}'
             `)
             .then(dbRes => res.status(200).send(dbRes[0]))
             .catch(err => console.log(err))

@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
-const {seed, saveSong, getSongs} = require('./controller.js')
+const ctrl = require('./controller.js')
 
 
 app.use(express.json())
@@ -12,12 +12,10 @@ app.get('/',function(req,res) {
 });
 
 
-app.post('/seed', seed)
-app.post('/saveSong', saveSong)
-app.get('/getSongs/:id', getSongs)
+app.post('/seed', ctrl.seed)
+app.post('/saveSong', ctrl.saveSong)
+app.get('/getSongs/:id', ctrl.getSongs)
+app.get('/getUserInfo', ctrl.getUserInfo)
+app.post('/login', ctrl.login)
 
 app.listen(process.env.SERVER_PORT, () => console.log(`Arc reactor pushing power to port ${process.env.SERVER_PORT}`))
-
-// app.post('/songs', (req, res) => {
-//     req.body.songNotes
-// })

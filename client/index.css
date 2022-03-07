@@ -2,112 +2,74 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 body{
-    background-color: rgb(160, 160, 160);
+    background: #e6e6e6;
 }
-.container{
+body, .login-box, .login{
     display: flex;
-}
-
-.tri{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    width: 33vw;
-    height: 100vh;
-}
-nav{
-    background-color: #0E0D1C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 25vw;
-    height: 100vh;
-}
-.keys{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 50vw;
-    height: 100vh;
-}
-.visual{
-    border: white 1px solid;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    border-radius: 15px;
-    background-color: #0E0D1C;
-}
-.set{
-    display: flex;
     justify-content: center;
     align-items: center;
 }
-.key{
+body{
+    height: 100vh;
+    width: 100vw;
+}
+.login{
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    margin: 40px 0 0;
+    padding: 20px 0 28px;
+    padding-top: 20px;
+    padding-bottom: 28px;
+    width: 396px;
+    margin-bottom: 20px;
+}
+.item{
+    margin: 15px;
+}
+.submit{
+    margin: -2.5px;
+}
+.block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 375px;
     height: 75px;
-    width: 75px;
-    background-color: rgb(78, 78, 78);
-    border: 1px rgba(190, 180, 180, 0.637) solid;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgba(190, 180, 180, 0.637);
-    border-radius: 15px;
-    font-family: Roboto;
-    font-size: 50px;
+    border: 2px rgba(187, 187, 187, 0.5) solid;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 20px;
+    text-indent: 10px;
 }
-.key.active{
-    background: radial-gradient(rgb(204, 236, 130), rgb(81, 172, 81));
+.submit{
+    background-color: rgb(79, 146, 88);
     color: white;
+    font-size: 28px;
 }
-.recordings{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 15vw;
-    height: 100vh;
+.submit:hover{
+    cursor: pointer;
+    background-color: rgb(79, 146, 88, .95) ;
 }
-.recorder{
-    display: flex;
+.logo{
+    border-radius: 15px;
 }
-/* .audio{
-    width: 150px;
-    background-color: white;
-    height:48px
-} */
-.record{
-    height: 40px;
-    width: 40px;
-    background-color: rgb(79, 206, 79);
-    border-radius: 100%;
+.create{
+    font-size: 20px;
+    text-decoration: none;
 }
-.delete{
-    height: 40px;
-    width: 40px;
-    background-color: red;
-    
+.create:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
-.btn{
-    height: 40px;
-    width: 40px
-}
-
-.record.active{
-    background-color: red;
-}
-.play,
-.save{
-    display: none;
-}
-.play.show,
-.save.show{
-    display: block ;
+h1, h2{
+    font-size: 14px;
+    color: #9896f1;
 }
