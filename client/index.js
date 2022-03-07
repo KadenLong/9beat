@@ -131,6 +131,7 @@ function stopRecording() {
   playSong()
   playButton.classList.add('show')
   saveButton.classList.add('show')
+  console.log(songNotes)
 }
 function playSong(){
   console.log(songNotes)
@@ -149,5 +150,8 @@ function recordNote(note){
 }
 
 function saveSong(){
-  
+  axios
+    .post('/saveSong', songNotes)
+    .then(alert('Song Saved!'))
+    .catch(err => console.log(err))
 }
