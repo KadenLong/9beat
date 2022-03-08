@@ -24,8 +24,8 @@ function login(body) {
     axios
         .post('/login', body)
         .then((res) => {
-            console.log(res.data)
-            sessionStorage.setItem('userId', `${res.data.user_id}`)
+            console.log(res.data[0].user_id)
+            sessionStorage.setItem('userId', `${res.data[0].user_id}`)
             window.location.href = "http://localhost:4005/lab.html"
         })
         .catch(err => {
