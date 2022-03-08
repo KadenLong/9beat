@@ -79,5 +79,27 @@ module.exports ={
             `)
             .then(dbRes => res.status(200).send(dbRes[0]))
             .catch(err => console.log(err))
+    },
+    signUp: (req, res) => {
+        console.log('hit')
+        sequelize
+            .query(`
+                SELECT username FROM users WHERE username = '${req.body.user}'
+            `)
+            .then(dbRes => {
+                console.log(dbRes[0])
+                console.log(dbRes[0].length)
+                if (dbRes[0].length === 0 ) {
+                    sequelize
+                        .query(`
+                        INSERT INTO users (username, password)
+                        VALUES ('${req.body.user}', '${req.body.password}')
+                        `)
+                        .then(res.sendStatus(200))
+                        .catch(err => console.log(err))
+                } else res.sendStatus(400)
+
+            })
+            .catch(err => console.log(err))
     }
 }
