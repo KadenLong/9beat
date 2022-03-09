@@ -14,7 +14,9 @@ app.get('/',function(req,res) {
 
 app.post('/seed', ctrl.seed)
 app.post('/saveSong', ctrl.saveSong)
-app.get('/getSongs/:id', ctrl.getSongs)
+app.get('/getUserBeats/:id', ctrl.getUserBeats)
+app.get('/getAllBeats', ctrl.getAllBeats)
+
 app.get('/getUserInfo', ctrl.getUserInfo)
 app.post('/login', ctrl.login)
 app.post('/signUp', ctrl.signUp)

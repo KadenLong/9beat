@@ -1,8 +1,13 @@
 const keys = document.querySelectorAll('.key')
-const recordButton = document.querySelector('.record')
+const recordButton = document.querySelector('#record')
+const deleteButton = document.getElementById('delete')
 const playButton = document.querySelector('.play')
 const saveButton = document.querySelector('.save')
 const pickAPack = document.querySelector('select')
+let beatTitleInput = document.querySelector('.b-name')
+let beatTitle
+beatTitleInput.addEventListener('click', () => beatTitle = document.querySelector('.b-name').value) 
+let userid = Number(sessionStorage.getItem('userId'))
 let recordingStartTime
 let songNotes
 
@@ -163,6 +168,7 @@ const vinyl = new Sprite ({
 })
 
 
+
 const playKey = (e) => {
   const keyDiv = document.getElementById(`${e.key}`)
   if (e.repeat) return
@@ -177,11 +183,12 @@ const playKey = (e) => {
 
 
 const playClick = (e) => {
+  console.log(typeof `${e.target.id}`)
   const keyDiv = document.getElementById(`${e.target.id}`)
   if (e.repeat) return
-  if(pickAPack.value === "eighties") eighties.play(`${e.key}`)
-  if(pickAPack.value === "vinyl") vinyl.play(`${e.key}`)
-  if(pickAPack.value === "electro") electro.play(`${e.key}`)
+  if(pickAPack.value === "eighties") eighties.play(`${e.target.key}`)
+  if(pickAPack.value === "vinyl") vinyl.play(`${e.target.key}`)
+  if(pickAPack.value === "electro") electro.play(`${e.target.key}`)
   keyDiv.classList.add('active')
   setTimeout(() => {
     keyDiv.classList.remove('active')
@@ -211,6 +218,8 @@ function isRecording(){
 function startRecording() {
   recordingStartTime = Date.now()
   songNotes = {
+    beatName: beatTitle,
+    user: userid,
     drumpack: pickAPack.value,
     notes: []
   }
@@ -239,7 +248,77 @@ function recordNote(note){
 }
 function saveSong(){
   axios
-    .post('/saveSong', songNotes)
+    .post('/saveSong', songNotes) //song notes initialized on line 216
     .then(alert('Song Saved!'))
     .catch(err => console.log(err))
+  
+  getUserBeats()
 }
+
+function getUserBeats() {
+  let i = 0
+  axios
+    .get(`/getUserBeats/${userid}`)
+    .then(res => {
+      //console.log(res.data[i].beat_notes.notes)
+      // let arr = JSON.parse(res.data.beat_notes.notes)
+      // console.log(arr)
+      document.querySelector('.user-beats').innerHTML = ''
+      res.data.forEach(obj => {
+        let beat = document.createElement('div')
+        beat.classList.add('recorder')
+        
+        let title = document.createElement('div')
+        beat.appendChild(title)
+        let titleText = document.createElement('h3')
+        titleText.textContent = obj.beat_name
+        title.appendChild(titleText)
+        
+        let controls = document.createElement('div')
+        controls.classList.add('record-buttons')
+        beat.appendChild(controls)
+        
+        let playBeat = document.createElement('ion-icon')
+        playBeat.name = "play-outline"
+        playBeat.size = "large"
+        playBeat.classList.add(`btn`)
+        playBeat.classList.add(`beat-play${i}`)
+        playBeat.addEventListener('click', () => {
+          if(obj.beat_kit === 'eighties') {
+            obj.beat_notes.notes.forEach(note => {
+              setTimeout(() => eighties.play(note.key), note.startTime)
+            })
+          }
+
+
+          if(obj.beat_kit === 'vinyl') {
+            obj.beat_notes.notes.forEach(note => {
+              setTimeout(() => vinyl.play(note.key), note.startTime)
+            })
+          }
+
+
+          if(obj.beat_kit === 'electro') {
+            obj.beat_notes.notes.forEach(note => {
+              setTimeout(() => electro.play(note.key), note.startTime)
+            })
+          }
+          //console.log(obj.beat_notes.notes[0])
+        })
+        controls.appendChild(playBeat)
+        
+        let deleteBeat = document.createElement('ion-icon')
+        deleteBeat.name = "close-circle-outline"
+        deleteBeat.size = "large"
+        deleteBeat.classList.add(`btn`)
+        deleteBeat.classList.add(`beat-delete${i}`)
+        controls.appendChild(deleteBeat)
+        
+       document.querySelector('.user-beats').appendChild(beat)
+       i++
+      })
+    })
+}
+// const testBtn = document.querySelector('.beat-play')
+// testBtn.addEventListener('click', getUserBeats)
+getUserBeats()

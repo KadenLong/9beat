@@ -8,48 +8,65 @@
     <title>Drumkit</title>
 </head>
 <body>
-    <div class="container">
-        <nav >
-
-        </nav>
+    <img src="./logo.PNG" alt="9Beat Logo" class="logo">
+    <main>
+        <div class="container">
             <div class="keys">
                 <select name="sounds" id="sounds">
                     <option value="eighties">80's</option>
                     <option value="vinyl">Vinyl</option>
                     <option value="electro">Electro</option>
                   </select>
-                <div class="visual">
-                    
-                    <div class="set">
-                        <div data-num="7" class="key" id="7">7</div>
-                        <div data-num="8" class="key" id="8">8</div>
-                        <div data-num="9" class="key" id="9">9</div>
-                    </div>
-                    <div class="set">
-                        <div data-num="4" class="key" id="4">4</div>
-                        <div data-num="5" class="key" id="5">5</div>
-                        <div data-num="6" class="key" id="6">6</div>
-                    </div>
-                    <div class="set">
-                        <div data-num="1" class="key" id="1">1</div>
-                        <div data-num="2" class="key" id="2">2</div>
-                        <div data-num="3" class="key" id="3">3</div>
-                    </div>
+                <div class="visual">        
+                    <div data-num="1" class="key" id="1">1</div>
+                    <div data-num="2" class="key" id="2">2</div>
+                    <div data-num="3" class="key" id="3">3</div>
+                    <div data-num="4" class="key" id="4">4</div>
+                    <div data-num="5" class="key" id="5">5</div>
+                    <div data-num="6" class="key" id="6">6</div>
+                    <div data-num="7" class="key" id="7">7</div>
+                    <div data-num="8" class="key" id="8">8</div>
+                    <div data-num="9" class="key" id="9">9</div>
                 </div>
             </div>
-            <div class="recordings">
-                <div class="recorder">
-                    
-                    <button class="record"></button>
-                    <button class="play btn">play</button>
-                    <button class="save btn">save</button>
-                    <button class="delete">X</button>
-                </div>
-            </div>
-    </div>
 
+            <div class="recordings">
+                <div class="contain-recorder">
+                    <h1>Recorder</h1>
+
+                    <div class="recorder">
+                        <div class="top">
+                            <input type="text" placeholder="beat name" class="b-name">
+                        </div>
+                        <div class="record-buttons">
+                            <button id="record" class="btn"></button>
+                            <button class="play btn">play</button>
+                            <button class="save btn">save</button>
+                        </div>
+                    </div>
+
+                    <h1>Your Beats</h1>
+                    <div class="user-beats">
+                        <div class="recorder">
+                            <!-- <div class="top">
+                                <h3 class="r-name">Test</h3>
+                            </div>
+                            <div class="record-buttons">
+                                <ion-icon name="play-outline" size="large" class="btn beat-play"></ion-icon>
+                                <ion-icon name="close-circle-outline" size="large" class="btn beat-delete"></ion-icon>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    
+        </div>
+    </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="lab.js"></script>
 </body>
 </html>

@@ -43,7 +43,7 @@ module.exports ={
         sequelize
             .query(`
                 INSERT INTO beats (beat_name, beat_kit, beat_notes, user_id)
-                VALUES ('first_beat', 'first_kit', '${json}', 1);
+                VALUES ('${req.body.beatName}', '${req.body.drumpack}', '${json}', '${req.body.user}');
             `)
             .then(dbRes => res.sendStatus(200))
             .catch(err => console.log(err))
@@ -58,12 +58,21 @@ module.exports ={
             .then(dbRes => res.status(200).send(dbRes[0]))
             .catch(err => console.log(err))
     },
-    getSongs: (req, res) => {
+    getUserBeats: (req, res) => {
         sequelize
             .query(`
                 SELECT *
                 FROM beats
                 WHERE user_id = ${req.params.id}
+            `)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))
+    },
+    getAllBeats: (req, res) => {
+        sequelize
+            .query(`
+                SELECT *
+                FROM beats
             `)
             .then(dbRes => res.status(200).send(dbRes[0]))
             .catch(err => console.log(err))
