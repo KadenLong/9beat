@@ -260,9 +260,6 @@ function getUserBeats() {
   axios
     .get(`/getUserBeats/${userid}`)
     .then(res => {
-      //console.log(res.data[i].beat_notes.notes)
-      // let arr = JSON.parse(res.data.beat_notes.notes)
-      // console.log(arr)
       document.querySelector('.user-beats').innerHTML = ''
       res.data.forEach(obj => {
         let beat = document.createElement('div')
@@ -282,7 +279,7 @@ function getUserBeats() {
         playBeat.name = "play-outline"
         playBeat.size = "large"
         playBeat.classList.add(`btn`)
-        playBeat.classList.add(`beat-play${i}`)
+        playBeat.classList.add(`beat-play`)
         playBeat.addEventListener('click', () => {
           if(obj.beat_kit === 'eighties') {
             obj.beat_notes.notes.forEach(note => {
@@ -303,7 +300,6 @@ function getUserBeats() {
               setTimeout(() => electro.play(note.key), note.startTime)
             })
           }
-          //console.log(obj.beat_notes.notes[0])
         })
         controls.appendChild(playBeat)
         
@@ -311,14 +307,20 @@ function getUserBeats() {
         deleteBeat.name = "close-circle-outline"
         deleteBeat.size = "large"
         deleteBeat.classList.add(`btn`)
-        deleteBeat.classList.add(`beat-delete${i}`)
+        deleteBeat.classList.add(`beat-delete`)
+        deleteBeat.addEventListener('click', () => {
+          axios
+            .delete(`/deleteBeat/${obj.beat_id}`)
+            .catch(err => console.log(err))
+          
+          
+
+          getUserBeats()
+        })
         controls.appendChild(deleteBeat)
         
        document.querySelector('.user-beats').appendChild(beat)
-       i++
       })
     })
 }
-// const testBtn = document.querySelector('.beat-play')
-// testBtn.addEventListener('click', getUserBeats)
 getUserBeats()

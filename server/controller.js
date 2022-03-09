@@ -110,5 +110,15 @@ module.exports ={
 
             })
             .catch(err => console.log(err))
+    },
+    deleteBeat: (req, res) => {
+        sequelize
+            .query(`
+                DELETE 
+                FROM beats
+                WHERE beat_id = ${req.params.id}
+            `)
+            .then(res.sendStatus(200))
+            .catch(err => console.log(err))
     }
 }
